@@ -18,7 +18,7 @@ addBuild($build);
 function addBuild($build){
 	$string = file_get_contents("../data/appz.json");
 	$json_appz = json_decode($string, true);
-
+	print "\nAdding new BUILD\n====\n";
 	$appFound = false;
 	$deliverableFound = false;
 	foreach ($json_appz as $app_name => $app_obj) {
@@ -43,7 +43,7 @@ function addBuild($build){
 		print "Deliverable need to be created\n";
 	}
 
-	file_put_contents("../data/appz_generated.json", json_encode($json_a, JSON_PRETTY_PRINT));
+	file_put_contents("../data/appz_generated.json", json_encode($json_appz, JSON_PRETTY_PRINT));
 }
 
 ?>
