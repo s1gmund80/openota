@@ -1,0 +1,64 @@
+{
+  "Better": {
+    "dir": "better",
+    "deliverables": [
+      {
+        "Android": {
+          "isAndroid": true,
+          "isIOs": false,
+          "releases": [
+            {
+              "name": "Test x BU",
+              "dir": "2015-09-23-23-10-24",
+              "version": "1.5.2",
+              "branch": "trunk",
+              "revision": "9290",
+              "date": "2015-09-23",
+              "time": "23:10:24",
+              "tags": [
+                "BU",
+                "KO",
+                "Release",
+                "RC"
+              ],
+              "build": [
+                {
+                  "name": "Staging",
+                  "path": "http://"
+                },
+                {
+                  "name": "Prod",
+                  "path": "http://"
+                }
+              ]
+            },
+            {
+              "name": "Test x prova",
+              "dir": "2015-09-24-12-10-24",
+              "version": "1.5.2",
+              "branch": "trunk",
+              "revision": "9291",
+              "date": "2015-09-24",
+              "time": "12:10:24",
+              "tags": [
+                "OK",
+                "Release",
+                "RC"
+              ],
+              "build": [
+                {
+                  "name": "Staging",
+                  "path": "http://"
+                },
+                {
+                  "name": "Prod",
+                  "path": "http://"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
