@@ -6,6 +6,10 @@ include 'utils.php';
 * php appmanager.php --app Lottomatica -i --deliverable iOS --relName "Feature Visore" --relDir "dirrel" --relVersion 1.5.20 --relBranch trunk --relRevision 6509 --relDate "2015-09-13" --relTime "12:10:23" --tags "BU,ok" --buildName "Staging" --buildPath "Staging" 
 **/
 
+/*
+php appmanager.php --app Better --deliverable Android --relName "Android Test x BU" --relDir "dirrel" --relVersion 1.5.20 --relBranch trunk --relRevision 6509 --relDate "2015-09-13" --relTime "12:10:23" --tags "BU,ok" --buildName "Staging2" --buildPath "Staging" 
+**/
+
 $opts = getoptreq('i', array('app:', 'deliverable:', 'relName:', 'relDir:', 'relVersion:', 
 	'relBranch:', 'relRevision:', 'relDate:', 'relTime:', 'tags:', 'buildName:', 'buildPath:'));
 //var_dump($opts);
@@ -19,28 +23,56 @@ function addBuild($build){
 	$string = file_get_contents("../data/appz.json");
 	$json_appz = json_decode($string, true);
 	print "\nAdding new BUILD\n====\n";
-	$appFound = false;
-	$deliverableFound = false;
-	foreach ($json_appz as $app_name => $app_obj) {
-	    echo "Scansione app: ".$app_name."\n";
-	    if ($app_name == $build->application){
-	    	$appFound = true;
-	    	print "App found! let's go insied"."\n";
-	    	$deliverables =  $app_obj['deliverables'];
-	    	foreach ($deliverables as $deliverable_name => $deliverable_obj) {
-			    echo "Scansione deliverable: ".$deliverable_name;
-			    if ($deliverable_name == $build->deliverableType){
-			    	$deliverableFound = true;
-			    	print "Deliverable found! let's go insied"."\n";
-			    	$releases =  $deliverable_obj['releases'];
-			    } 
+
+	$appNode = $json_appz[$build->application];
+
+	if($appNode!=null){
+		print "App '".$build->application."'' found!\n";
+		$deliverablesNode = $appNode["deliverables"];
+		foreach ($deliverablesNode as $deliverableObject) {
+			$deliverableNode = $deliverableObject[$build->deliverableType];
+			if($deliverableNode!=null){
+				print "DeliverableType '".$build->deliverableType."'' found!\n";
+				$deliverableFound = true;
+				$releasesNodes = $deliverableNode["releases"];
+				$releaseFound = false;
+				foreach ($releasesNodes as $releaseObject) {
+					if($releaseObject["name"] == $build->releaseName){
+						print "Release '".$build->releaseName."'' found!\n";
+						$releaseFound = true;
+						$builds = $releaseObject["builds"];
+						$buildAlreadyExists = false;
+						foreach ($builds as $buildObject) {
+							if($buildObject["name"] == $build->buildName){
+								print "Error!!! Build with name '".$build->buildName."'' Already Exists!\n";
+								$buildAlreadyExists = true;
+								break;
+							}
+						}
+						if(!$buildAlreadyExists){
+							print "Build needs to be created\n";
+							print "TODO Complete creation process\n";
+							//array_push($builds, $build->getBuildNode());
+							//var_dump($json_appz[$build->application]["deliverables"][$build->deliverableType]["releases"] );
+							//array_push(   , $build->getBuildNode());
+						}
+						break;
+					}
+				}
+				if(!$releaseFound){
+					print "Release needs to be created\n";
+					print "TODO Release creation\n";						
+				}
+				break;
 			}
-	    } 
-	}
-	if($appFound==false){
-		print "App need to be created\n";
-	}else if($deliverableFound==false){
-		print "Deliverable need to be created\n";
+		}
+		if(!$deliverableFound){
+				print "deliverableType needs to be created\n";
+				print "TODO deliverableType creation\n";
+		}
+	}else{
+		print "App needs to be created\n";
+		print "TODO app creation\n";
 	}
 
 	file_put_contents("../data/appz_generated.json", json_encode($json_appz, JSON_PRETTY_PRINT));

@@ -8,7 +8,7 @@
                     "isIOs": false,
                     "releases": [
                         {
-                            "name": "Test x BU",
+                            "name": "Android Test x BU",
                             "dir": "2015-09-23-23-10-24",
                             "version": "1.5.2",
                             "branch": "trunk",
@@ -21,7 +21,7 @@
                                 "Release",
                                 "RC"
                             ],
-                            "build": [
+                            "builds": [
                                 {
                                     "name": "Staging",
                                     "path": "http:\/\/"
@@ -33,7 +33,7 @@
                             ]
                         },
                         {
-                            "name": "Test x prova",
+                            "name": "Android Test x prova",
                             "dir": "2015-09-24-12-10-24",
                             "version": "1.5.2",
                             "branch": "trunk",
@@ -45,7 +45,64 @@
                                 "Release",
                                 "RC"
                             ],
-                            "build": [
+                            "builds": [
+                                {
+                                    "name": "Staging",
+                                    "path": "http:\/\/"
+                                },
+                                {
+                                    "name": "Prod",
+                                    "path": "http:\/\/"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "iOS": {
+                    "isAndroid": false,
+                    "isIOs": true,
+                    "releases": [
+                        {
+                            "name": "iOS Test x BU",
+                            "dir": "2015-09-23-23-10-24",
+                            "version": "1.5.2",
+                            "branch": "trunk",
+                            "revision": "9290",
+                            "date": "2015-09-23",
+                            "time": "23:10:24",
+                            "tags": [
+                                "BU",
+                                "KO",
+                                "Release",
+                                "RC"
+                            ],
+                            "builds": [
+                                {
+                                    "name": "Staging",
+                                    "path": "http:\/\/"
+                                },
+                                {
+                                    "name": "Prod",
+                                    "path": "http:\/\/"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "iOS Test x prova",
+                            "dir": "2015-09-24-12-10-24",
+                            "version": "1.5.2",
+                            "branch": "trunk",
+                            "revision": "9291",
+                            "date": "2015-09-24",
+                            "time": "12:10:24",
+                            "tags": [
+                                "OK",
+                                "Release",
+                                "RC"
+                            ],
+                            "builds": [
                                 {
                                     "name": "Staging",
                                     "path": "http:\/\/"

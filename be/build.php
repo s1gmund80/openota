@@ -30,6 +30,15 @@ class Build {
 		echo "buildName ".$this->buildName."\n"; 
 		echo "buildPath ".$this->buildPath."\n"; 
     } 
+
+    function getBuildNode() { 
+        $buildNode = array(
+            "name" => $this->buildName,
+            "path" => $this->buildPath
+        );
+        return $buildNode;
+    }
+
 } 
 
 ?>
